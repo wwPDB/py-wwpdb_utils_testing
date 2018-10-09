@@ -41,9 +41,7 @@ setup(
         'Programming Language :: Python :: 3.7',
     ),
     entry_points={
-        'console_scripts': ['ConfigInfoFileExec=wwpdb.api.config.ConfigInfoFileExec:main',
-                            'ConfigInfoDataSetExec=wwpdb.api.config.ConfigInfoDataSetExec:main',
-        ]
+        'console_scripts': []
     },
     #
     install_requires=[],
