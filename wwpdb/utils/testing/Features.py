@@ -20,7 +20,7 @@ class Features(object):
         """Returns True is api services available"""
         return True
 
-    def haveMySqlServer(self):
+    def haveMySqlTestServer(self):
         """Returns True if MySql server available for testing"""
         return False
 
