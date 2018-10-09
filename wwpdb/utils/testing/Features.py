@@ -24,6 +24,10 @@ class Features(object):
         """Returns True if MySql server available for testing"""
         return False
 
+    def haveRbmqTestServer(self):
+        """Returns True if MySql server available for testing"""
+        return False
+
     def testNever(self):
         """Always returns False to confirm ability to skip in testing"""
         return False
