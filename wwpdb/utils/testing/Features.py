@@ -28,6 +28,18 @@ class Features(object):
         """Returns True if MySql server available for testing"""
         return False
 
+    def haveCvsTestServer(self):
+        """Returns True if CVS server available for testing"""
+        return False
+
+    def haveSvnTestServer(self):
+        """Returns True if SVN server available for testing"""
+        return False
+
+    def haveSftpTestServer(self):
+        """Returns True if SFTP server available for testing"""
+        return False
+
     def testNever(self):
         """Always returns False to confirm ability to skip in testing"""
         return False
