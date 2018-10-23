@@ -40,6 +40,10 @@ class Features(object):
         """Returns True if SFTP server available for testing"""
         return False
 
+    def haveToolsRuntime(self):
+        """Returns True if runtime tools available in environment"""
+        return False
+    
     def testNever(self):
         """Always returns False to confirm ability to skip in testing"""
         return False
