@@ -48,7 +48,7 @@ class SiteConfigSetup(object):
         os.environ['WWPDB_SITE_LOC'] = 'rcsb-east'
 
         call('ConfigInfoFileExec --writecache --locid=rcsb-east --siteid=' +
-             sname.upper() + " --sourcedir ' +
+             sname.upper() + ' --sourcedir ' +
              os.path.join(MockDirPath, 'site-config') +
              ' --mockdir ' + MockDirPath, shell=True)
 
