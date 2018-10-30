@@ -31,6 +31,7 @@ class CreateRWTree(object):
             'site-config': '_copysiteconfig',
             'actiondata': '_copyactiondata',
             'archive': '_copyarchive',
+            'depuiresources': '_copydepuiresources'
         }
 
     def createtree(self, objlist=None):
@@ -75,6 +76,16 @@ class CreateRWTree(object):
             os.makedirs(dst_base)
         shutil.copyfile(src, dst)
 
+    def _copydepuiresources(self):
+        """Copies the depu resources tree so that MockTopDir will be the top of the r/w tree"""
+        logging.info("Creating %s" % self.__dstDir)
+        src = os.path.join(self.__srcDir, 'da_top', 'resources_ro', 'depui')
+        dst = os.path.join(self.__dstDir, 'da_top', 'resources_ro', 'depui')
+        if os.path.exists(dst):
+            shutil.rmtree(dst)
+        shutil.copytree(src, dst)
+
+        
     def _copyarchive(self, idlist):
         """Copies the archive directory down so that MockTopDir will be the top of the r/w tree"""
         if type(idlist) is str:
