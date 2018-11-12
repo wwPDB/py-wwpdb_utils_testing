@@ -43,6 +43,10 @@ class Features(object):
     def haveToolsRuntime(self):
         """Returns True if runtime tools available in environment"""
         return False
+
+    def haveCCD(self):
+        """Returns True if CCD available for use in read only tests"""
+        return False
     
     def testNever(self):
         """Always returns False to confirm ability to skip in testing"""
