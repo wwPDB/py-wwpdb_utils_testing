@@ -33,6 +33,7 @@ class CreateRWTree(object):
             'archive': '_copyarchive',
             'depuiresources': '_copydepuiresources',
             'emdresources': '_copyemdresources',
+            'wsresources': '_copywsresources',
         }
 
     def createtree(self, objlist=None):
@@ -91,6 +92,15 @@ class CreateRWTree(object):
         logging.info("Creating %s" % self.__dstDir)
         src = os.path.join(self.__srcDir, 'da_top', 'resources_ro', 'emd')
         dst = os.path.join(self.__dstDir, 'da_top', 'resources_ro', 'emd')
+        if os.path.exists(dst):
+            shutil.rmtree(dst)
+        shutil.copytree(src, dst)
+        
+    def _copywsresources(self):
+        """Copies the content_ws resources tree so that MockTopDir will be the top of the r/w tree"""
+        logging.info("Creating %s" % self.__dstDir)
+        src = os.path.join(self.__srcDir, 'da_top', 'resources_ro', 'content_ws')
+        dst = os.path.join(self.__dstDir, 'da_top', 'resources_ro', 'content_ws')
         if os.path.exists(dst):
             shutil.rmtree(dst)
         shutil.copytree(src, dst)
