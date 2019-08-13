@@ -34,6 +34,7 @@ class CreateRWTree(object):
             'depuiresources': '_copydepuiresources',
             'emdresources': '_copyemdresources',
             'wsresources': '_copywsresources',
+            'webapps': '_copywebapps',
         }
 
     def createtree(self, objlist=None):
@@ -79,7 +80,7 @@ class CreateRWTree(object):
         shutil.copyfile(src, dst)
 
     def _copydepuiresources(self):
-        """Copies the depu resources tree so that MockTopDir will be the top of the r/w tree"""
+        """Copies the depui resources tree so that MockTopDir will be the top of the r/w tree"""
         logging.info("Creating %s" % self.__dstDir)
         src = os.path.join(self.__srcDir, 'da_top', 'resources_ro', 'depui')
         dst = os.path.join(self.__dstDir, 'da_top', 'resources_ro', 'depui')
@@ -104,7 +105,22 @@ class CreateRWTree(object):
         if os.path.exists(dst):
             shutil.rmtree(dst)
         shutil.copytree(src, dst)
-        
+
+    def _copywebapps(self, modules):
+        """Copies selected webapps resources tree so that MockTopDir will be the top of the r/w tree"""
+        if type(modules) is str:
+            modules = [modules]
+
+        basesrcdir = os.path.join(self.__srcDir, 'da_top', 'webapps', 'htdocs')
+        basedstdir = os.path.join(self.__dstDir, 'da_top', 'webapps', 'htdocs')
+        for mod in modules:
+            logging.info("Creating %s" % self.__dstDir)
+            src = os.path.join(basesrcdir, mod)
+            dst = os.path.join(basedstdir, mod)
+            logger.info("Copying %s to %s" % (src, dst))
+            if os.path.exists(dst):
+                shutil.rmtree(dst)
+            shutil.copytree(src, dst)
         
     def _copyarchive(self, idlist):
         """Copies the archive directory down so that MockTopDir will be the top of the r/w tree"""
