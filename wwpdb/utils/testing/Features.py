@@ -15,6 +15,8 @@ __email__ = "peisach@rcsb.rutgers.edu"
 __license__ = "Creative Commons Attribution 3.0 Unported"
 __version__ = "V0.01"
 
+import os
+
 class Features(object):
     def haveApi(self):
         """Returns True is api services available"""
@@ -26,6 +28,8 @@ class Features(object):
 
     def haveRbmqTestServer(self):
         """Returns True if MySql server available for testing"""
+        if os.getenv('RBMQUP'):
+            return True
         return False
 
     def haveCvsTestServer(self):
