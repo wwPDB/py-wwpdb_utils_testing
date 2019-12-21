@@ -46,6 +46,28 @@ class FeaturesTests(unittest.TestCase):
     def testNever(self):
         self.fail("Test should have been skipped")
 
+    def testMySqlTestServer(self):
+        self.assertFalse(Features().haveMySqlTestServer())
 
-if __name__ == '__main__':
+    def testRbmqTestServer(self):
+        # Might need to handle true case
+        self.assertFalse(Features().haveRbmqTestServer())
+
+    def testCvsTestServer(self):
+        self.assertFalse(Features().haveCvsTestServer())
+
+    def testSvnTestServer(self):
+        self.assertFalse(Features().haveSvnTestServer())
+
+    def testSftpTestServer(self):
+        self.assertFalse(Features().haveSftpTestServer())
+
+    def testToolsRuntime(self):
+        self.assertFalse(Features().haveToolsRuntime())
+
+    def testHaveCCD(self):
+        self.assertFalse(Features().haveCCD())
+
+
+if __name__ == '__main__':  # pragma: no cover
     unittest.main()

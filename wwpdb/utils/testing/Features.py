@@ -29,7 +29,7 @@ class Features(object):
 
     def haveRbmqTestServer(self):
         """Returns True if MySql server available for testing"""
-        if os.getenv('RBMQUP'):
+        if os.getenv('RBMQUP'):  # pragma: no cover
             return True
         return False
 
