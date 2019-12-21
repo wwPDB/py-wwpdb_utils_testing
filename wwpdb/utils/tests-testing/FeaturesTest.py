@@ -17,10 +17,7 @@ __email__ = "peisach@rcsb.rutgers.edu"
 __license__ = "Creative Commons Attribution 3.0 Unported"
 __version__ = "V0.01"
 
-import sys
 import unittest
-import traceback
-import time
 
 from wwpdb.utils.testing.Features import Features
 
@@ -32,10 +29,11 @@ class FeaturesTests(unittest.TestCase):
 
     def setUp(self):
         pass
+
     def tearDown(self):
         pass
 
-    @unittest.skipUnless(Features().haveApi(), 'skipping if lack of API' )
+    @unittest.skipUnless(Features().haveApi(), 'skipping if lack of API')
     def testHaveApi(self):
         """Test should be run all the time"""
         self.assertTrue(Features().haveApi())
@@ -48,6 +46,6 @@ class FeaturesTests(unittest.TestCase):
     def testNever(self):
         self.fail("Test should have been skipped")
 
+
 if __name__ == '__main__':
     unittest.main()
-

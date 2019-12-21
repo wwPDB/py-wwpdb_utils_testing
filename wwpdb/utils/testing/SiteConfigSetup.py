@@ -44,9 +44,7 @@ class SiteConfigSetup(object):
         os.environ['WWPDB_SITE_ID'] = sname.upper()
         os.environ['WWPDB_SITE_LOC'] = 'rcsb-east'
 
-        call('python -m wwpdb.utils.config.ConfigInfoFileExec --writecache --locid=rcsb-east --siteid=' +
-             sname.upper() + ' --sourcedir ' +
-             os.path.join(MockDirPath, 'site-config') +
-             ' --mockdir ' + MockDirPath, shell=True)
-
-    
+        call('python -m wwpdb.utils.config.ConfigInfoFileExec --writecache --locid=rcsb-east --siteid='
+             + sname.upper() + ' --sourcedir '
+             + os.path.join(MockDirPath, 'site-config')
+             + ' --mockdir ' + MockDirPath, shell=True)

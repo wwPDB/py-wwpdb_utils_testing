@@ -17,6 +17,7 @@ __version__ = "V0.01"
 
 import os
 
+
 class Features(object):
     def haveApi(self):
         """Returns True is api services available"""
@@ -51,7 +52,7 @@ class Features(object):
     def haveCCD(self):
         """Returns True if CCD available for use in read only tests"""
         return False
-    
+
     def testNever(self):
         """Always returns False to confirm ability to skip in testing"""
         return False

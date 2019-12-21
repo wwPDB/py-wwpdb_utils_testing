@@ -71,7 +71,7 @@ class CreateRWTree(object):
         """Copies the actondata definitions"""
         src = os.path.join(self.__srcDir, 'da_top', 'resources_ro', 'actionData.xml')
         dst = os.path.join(self.__dstDir, 'da_top', 'resources_ro', 'actionData.xml')
-        logging.info("Copying %s to %s" %(src, dst))
+        logging.info("Copying %s to %s" % (src, dst))
         dst_base = os.path.dirname(dst)
         if os.path.exists(dst):
             os.unlink(dst)
@@ -96,7 +96,7 @@ class CreateRWTree(object):
         if os.path.exists(dst):
             shutil.rmtree(dst)
         shutil.copytree(src, dst)
-        
+
     def _copywsresources(self):
         """Copies the content_ws resources tree so that MockTopDir will be the top of the r/w tree"""
         logging.info("Creating %s" % self.__dstDir)
@@ -121,7 +121,7 @@ class CreateRWTree(object):
             if os.path.exists(dst):
                 shutil.rmtree(dst)
             shutil.copytree(src, dst)
-        
+
     def _copyarchive(self, idlist):
         """Copies the archive directory down so that MockTopDir will be the top of the r/w tree"""
         if type(idlist) is str:
