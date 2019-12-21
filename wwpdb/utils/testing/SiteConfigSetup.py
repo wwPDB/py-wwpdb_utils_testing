@@ -17,11 +17,9 @@ __email__ = "peisach@rcsb.rutgers.edu"
 __license__ = "Creative Commons Attribution 3.0 Unported"
 __version__ = "V0.01"
 
-import traceback
 import os
 import sys
-import platform
-from subprocess import call, check_output
+from subprocess import call
 
 
 # Empty class for import
@@ -34,12 +32,11 @@ class SiteConfigSetup(object):
             os.makedirs(TestOutputPath)
 
         sname = 'wwpdb_deploy_test'
-        
-        testSiteConfig= os.path.join(TestOutputPath, 'site-config')
+
+        testSiteConfig = os.path.join(TestOutputPath, 'site-config')
         fSiteConfig = os.path.join(testSiteConfig, 'rcsb-east', sname)
         if not os.path.exists(fSiteConfig):
             os.makedirs(fSiteConfig)
-
 
         # Extend python search path
         sys.path.insert(0, fSiteConfig)
