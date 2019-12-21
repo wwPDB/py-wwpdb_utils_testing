@@ -56,11 +56,11 @@ class CreateRWTree(object):
                 else:
                     mth()
             else:
-                logger.error("%s not known" % req)
+                logger.error("%s not known", req)
 
     def _copysiteconfig(self):
         """Copies the site config tree down so that MockTopDir will be the top of the r/w tree"""
-        logging.info("Creating %s" % self.__dstDir)
+        logger.info("Creating %s", self.__dstDir)
         src = os.path.join(self.__srcDir, 'site-config')
         dst = os.path.join(self.__dstDir, 'site-config')
         if os.path.exists(dst):
@@ -71,7 +71,7 @@ class CreateRWTree(object):
         """Copies the actondata definitions"""
         src = os.path.join(self.__srcDir, 'da_top', 'resources_ro', 'actionData.xml')
         dst = os.path.join(self.__dstDir, 'da_top', 'resources_ro', 'actionData.xml')
-        logging.info("Copying %s to %s" % (src, dst))
+        logger.info("Copying %s to %s", src, dst)
         dst_base = os.path.dirname(dst)
         if os.path.exists(dst):
             os.unlink(dst)
@@ -81,7 +81,7 @@ class CreateRWTree(object):
 
     def _copydepuiresources(self):
         """Copies the depui resources tree so that MockTopDir will be the top of the r/w tree"""
-        logging.info("Creating %s" % self.__dstDir)
+        logger.info("Creating %s", self.__dstDir)
         src = os.path.join(self.__srcDir, 'da_top', 'resources_ro', 'depui')
         dst = os.path.join(self.__dstDir, 'da_top', 'resources_ro', 'depui')
         if os.path.exists(dst):
@@ -90,7 +90,7 @@ class CreateRWTree(object):
 
     def _copyemdresources(self):
         """Copies the emd  resources tree so that MockTopDir will be the top of the r/w tree"""
-        logging.info("Creating %s" % self.__dstDir)
+        logger.info("Creating %s", self.__dstDir)
         src = os.path.join(self.__srcDir, 'da_top', 'resources_ro', 'emd')
         dst = os.path.join(self.__dstDir, 'da_top', 'resources_ro', 'emd')
         if os.path.exists(dst):
@@ -99,7 +99,7 @@ class CreateRWTree(object):
 
     def _copywsresources(self):
         """Copies the content_ws resources tree so that MockTopDir will be the top of the r/w tree"""
-        logging.info("Creating %s" % self.__dstDir)
+        logger.info("Creating %s", self.__dstDir)
         src = os.path.join(self.__srcDir, 'da_top', 'resources_ro', 'content_ws')
         dst = os.path.join(self.__dstDir, 'da_top', 'resources_ro', 'content_ws')
         if os.path.exists(dst):
@@ -114,10 +114,10 @@ class CreateRWTree(object):
         basesrcdir = os.path.join(self.__srcDir, 'da_top', 'webapps', 'htdocs')
         basedstdir = os.path.join(self.__dstDir, 'da_top', 'webapps', 'htdocs')
         for mod in modules:
-            logging.info("Creating %s" % self.__dstDir)
+            logger.info("Creating %s", self.__dstDir)
             src = os.path.join(basesrcdir, mod)
             dst = os.path.join(basedstdir, mod)
-            logger.info("Copying %s to %s" % (src, dst))
+            logger.info("Copying %s to %s", src, dst)
             if os.path.exists(dst):
                 shutil.rmtree(dst)
             shutil.copytree(src, dst)
@@ -130,7 +130,7 @@ class CreateRWTree(object):
         for did in idlist:
             src = os.path.join(self.__srcDir, 'da_top', 'data', 'archive', did)
             dst = os.path.join(self.__dstDir, 'da_top', 'data', 'archive', did)
-            logger.info("Copying %s to %s" % (src, dst))
+            logger.info("Copying %s to %s", src, dst)
             if os.path.exists(dst):
                 shutil.rmtree(dst)
             shutil.copytree(src, dst)
