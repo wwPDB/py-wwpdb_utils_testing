@@ -31,20 +31,25 @@ class SiteConfigSetup(object):
         if not os.path.exists(TestOutputPath):
             os.makedirs(TestOutputPath)
 
-        sname = 'wwpdb_deploy_test'
+        sname = "wwpdb_deploy_test"
 
-        testSiteConfig = os.path.join(TestOutputPath, 'site-config')
-        fSiteConfig = os.path.join(testSiteConfig, 'rcsb-east', sname)
+        testSiteConfig = os.path.join(TestOutputPath, "site-config")
+        fSiteConfig = os.path.join(testSiteConfig, "rcsb-east", sname)
         if not os.path.exists(fSiteConfig):
             os.makedirs(fSiteConfig)
 
         # Extend python search path
         sys.path.insert(0, fSiteConfig)
-        os.environ['TOP_WWPDB_SITE_CONFIG_DIR'] = testSiteConfig
-        os.environ['WWPDB_SITE_ID'] = sname.upper()
-        os.environ['WWPDB_SITE_LOC'] = 'rcsb-east'
+        os.environ["TOP_WWPDB_SITE_CONFIG_DIR"] = testSiteConfig
+        os.environ["WWPDB_SITE_ID"] = sname.upper()
+        os.environ["WWPDB_SITE_LOC"] = "rcsb-east"
 
-        call('python -m wwpdb.utils.config.ConfigInfoFileExec --writecache --locid=rcsb-east --siteid='
-             + sname.upper() + ' --sourcedir '
-             + os.path.join(MockDirPath, 'site-config')
-             + ' --mockdir ' + MockDirPath, shell=True)
+        call(
+            "python -m wwpdb.utils.config.ConfigInfoFileExec --writecache --locid=rcsb-east --siteid="
+            + sname.upper()
+            + " --sourcedir "
+            + os.path.join(MockDirPath, "site-config")
+            + " --mockdir "
+            + MockDirPath,
+            shell=True,
+        )

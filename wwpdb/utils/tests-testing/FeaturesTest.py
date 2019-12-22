@@ -33,16 +33,16 @@ class FeaturesTests(unittest.TestCase):
     def tearDown(self):
         pass
 
-    @unittest.skipUnless(Features().haveApi(), 'skipping if lack of API')
+    @unittest.skipUnless(Features().haveApi(), "skipping if lack of API")
     def testHaveApi(self):
         """Test should be run all the time"""
         self.assertTrue(Features().haveApi())
 
-    @unittest.skipIf(Features().haveApi(), 'requires API to run')
+    @unittest.skipIf(Features().haveApi(), "requires API to run")
     def testNotHaveApi(self):
         self.fail("Test should have been skipped")
 
-    @unittest.skipUnless(Features().testNever(), 'tests for never execution')
+    @unittest.skipUnless(Features().testNever(), "tests for never execution")
     def testNever(self):
         self.fail("Test should have been skipped")
 
@@ -69,5 +69,5 @@ class FeaturesTests(unittest.TestCase):
         self.assertFalse(Features().haveCCD())
 
 
-if __name__ == '__main__':  # pragma: no cover
+if __name__ == "__main__":  # pragma: no cover
     unittest.main()
