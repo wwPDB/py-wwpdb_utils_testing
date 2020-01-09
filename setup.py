@@ -24,7 +24,7 @@ setup(
     long_description="See:  README.md",
     author="Ezra Peisach",
     author_email="ezra.peisach@rcsb.org",
-    url="https://github.com/wwpdb/py-wwpdb_util_testing",
+    url="https://github.com/wwPDB/py-wwpdb_utils_testing",
     #
     license="Apache 2.0",
     classifiers=[
