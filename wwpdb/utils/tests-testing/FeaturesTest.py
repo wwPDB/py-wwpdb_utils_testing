@@ -17,6 +17,7 @@ __email__ = "peisach@rcsb.rutgers.edu"
 __license__ = "Creative Commons Attribution 3.0 Unported"
 __version__ = "V0.01"
 
+import os
 import unittest
 
 from wwpdb.utils.testing.Features import Features
@@ -48,6 +49,9 @@ class FeaturesTests(unittest.TestCase):
 
     def testMySqlTestServer(self):
         self.assertFalse(Features().haveMySqlTestServer())
+        os.environ["MYSQLUP"] = "True"
+        self.assertTrue(Features().haveMySqlTestServer())
+        del os.environ["MYSQLUP"]
 
     def testRbmqTestServer(self):
         # Might need to handle true case

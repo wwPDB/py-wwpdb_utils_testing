@@ -25,6 +25,8 @@ class Features(object):
 
     def haveMySqlTestServer(self):
         """Returns True if MySql server available for testing"""
+        if os.getenv("MYSQLUP"):
+            return True
         return False
 
     def haveRbmqTestServer(self):
