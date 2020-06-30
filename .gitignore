@@ -105,3 +105,6 @@ venv.bak/
 
 # Test output
 test-output/
+
+# emacs aurosave
+*~
