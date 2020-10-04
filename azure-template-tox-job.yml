@@ -48,6 +48,8 @@ jobs:
       #
       - script: which brew
         displayName: 'Check package manager'
+      - script: brew list
+        displayName: 'List packages'
       - script: brew install flex
         displayName: 'Install flex'
       - script: which flex
