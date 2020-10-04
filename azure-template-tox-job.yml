@@ -41,15 +41,13 @@ jobs:
       - bash: |
           set -e
           ls -la /Applications/Xcode*
-          sudo xcode-select --switch /Applications/Xcode_11.3.app/Contents/Developer
+          sudo xcode-select --switch /Applications/Xcode_10.2.app/Contents/Developer
           which g++
           c++ --version
         displayName: "setup Xcode"
       #
       - script: which brew
         displayName: 'Check package manager'
-      - script: brew list
-        displayName: 'List packages'
       - script: brew install flex
         displayName: 'Install flex'
       - script: which flex
