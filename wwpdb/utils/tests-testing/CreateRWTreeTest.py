@@ -51,11 +51,24 @@ class CreateRWTreeTest(unittest.TestCase):
 
     def testCopyMultiData(self):
         """Test creation of multiple items"""
+        dstdir = os.path.join(self.__testout, "da_top", "webapps")
+        if os.path.exists(dstdir):
+            shutil.rmtree(dstdir)
         self.__crw.createtree(["depuiresources", "emdresources", "wsresources", ["webapps", "msgmodule"]])
         self.assertTrue(os.path.exists(os.path.join(self.__testout, "da_top", "resources_ro", "depui")))
         self.assertTrue(os.path.exists(os.path.join(self.__testout, "da_top", "resources_ro", "emd")))
         self.assertTrue(os.path.exists(os.path.join(self.__testout, "da_top", "resources_ro", "content_ws")))
         self.assertTrue(os.path.exists(os.path.join(self.__testout, "da_top", "webapps", "htdocs", "msgmodule")))
+        self.assertTrue(os.path.exists(os.path.join(self.__testout, "da_top", "webapps", "version.json")))
+
+    def testCopyVersionOnly(self):
+        """Test creation of version.json webapps"""
+        dstdir = os.path.join(self.__testout, "da_top", "webapps")
+        if os.path.exists(dstdir):
+            shutil.rmtree(dstdir)
+        self.__crw.createtree(["webapps"])
+        self.assertFalse(os.path.exists(os.path.join(dstdir, "htdocs", "msgmodule")))
+        self.assertTrue(os.path.exists(os.path.join(dstdir, "version.json")))
 
     def testCopyArchiveData(self):
         """Test creation of archive data"""

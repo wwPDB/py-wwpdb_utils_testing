@@ -106,21 +106,35 @@ class CreateRWTree(object):
             shutil.rmtree(dst)
         shutil.copytree(src, dst)
 
-    def _copywebapps(self, modules):
+    def _copywebapps(self, modules=None):
         """Copies selected webapps resources tree so that MockTopDir will be the top of the r/w tree"""
         if type(modules) is str:
             modules = [modules]
 
-        basesrcdir = os.path.join(self.__srcDir, "da_top", "webapps", "htdocs")
-        basedstdir = os.path.join(self.__dstDir, "da_top", "webapps", "htdocs")
-        for mod in modules:
-            logger.info("Creating %s", self.__dstDir)
-            src = os.path.join(basesrcdir, mod)
-            dst = os.path.join(basedstdir, mod)
+        # Copy version number
+        websrcdir = os.path.join(self.__srcDir, "da_top", "webapps")
+        webdstdir = os.path.join(self.__dstDir, "da_top", "webapps")
+        src = os.path.join(websrcdir, "version.json")
+        dst = os.path.join(webdstdir, "version.json")
+        if not os.path.exists(webdstdir):
+            os.makedirs(webdstdir)
+        if os.path.exists(src):
             logger.info("Copying %s to %s", src, dst)
-            if os.path.exists(dst):
-                shutil.rmtree(dst)
-            shutil.copytree(src, dst)
+            shutil.copy(src, dst)
+        else:
+            logger.info("Source %s missing", src)
+
+        if modules:
+            basesrcdir = os.path.join(websrcdir, "htdocs")
+            basedstdir = os.path.join(webdstdir, "htdocs")
+            for mod in modules:
+                logger.info("Creating %s", self.__dstDir)
+                src = os.path.join(basesrcdir, mod)
+                dst = os.path.join(basedstdir, mod)
+                logger.info("Copying %s to %s", src, dst)
+                if os.path.exists(dst):
+                    shutil.rmtree(dst)
+                shutil.copytree(src, dst)
 
     def _copyarchive(self, idlist):
         """Copies the archive directory down so that MockTopDir will be the top of the r/w tree"""
