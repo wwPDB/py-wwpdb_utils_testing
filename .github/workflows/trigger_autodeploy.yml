@@ -15,7 +15,7 @@ jobs:
         steps:
         - name: Azure Pipelines Action
           #uses: Azure/pipelines@v1.2
-          uses: Azure/pipelines@master
+          uses: wwpdb/pipelines@wwPDB
           with:
             azure-devops-project-url: https://dev.azure.com/wwPDB/wwPDB%20Python%20Projects
             azure-pipeline-name: 'wwPDB.azure_autodeploy_pipeline'
