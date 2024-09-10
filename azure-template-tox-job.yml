@@ -171,7 +171,7 @@ jobs:
         displayName: "Build source/wheel"
       #
       # Check the install artifacts
-      - script: ls -lR "$(System.DefaultWorkingDirectory)/dist" "$(System.DefaultWorkingDirectory)/udist"
+      - script: ls -lR "$(System.DefaultWorkingDirectory)/dist"
         displayName: "Listing of installed software"
       #
       - publish: $(System.DefaultWorkingDirectory)/dist
