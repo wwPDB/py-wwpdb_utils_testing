@@ -35,5 +35,10 @@ namespaces = true
 [tool.setuptools.dynamic]
 version = {attr = "wwpdb.utils.testing.__version__"}
 
+[tool.setuptools]
+# We turn off the default to not include
+# MANIFEST.in files in wheel - but keep in sdist
+include-package-data = false
+
 [tool.distutils.bdist_wheel]
 universal = true
