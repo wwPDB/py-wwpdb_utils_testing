@@ -28,48 +28,48 @@ class FeaturesTests(unittest.TestCase):
     Test cases for skipping
     """
 
-    def setUp(self):
+    def setUp(self) -> None:
         pass
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         pass
 
     @unittest.skipUnless(Features().haveApi(), "skipping if lack of API")
-    def testHaveApi(self):
+    def testHaveApi(self) -> None:
         """Test should be run all the time"""
         self.assertTrue(Features().haveApi())
 
     @unittest.skipIf(Features().haveApi(), "requires API to run")
-    def testNotHaveApi(self):
+    def testNotHaveApi(self) -> None:
         self.fail("Test should have been skipped")
 
     @unittest.skipUnless(Features().testNever(), "tests for never execution")
-    def testNever(self):
+    def testNever(self) -> None:
         self.fail("Test should have been skipped")
 
-    def testMySqlTestServer(self):
+    def testMySqlTestServer(self) -> None:
         self.assertFalse(Features().haveMySqlTestServer())
         os.environ["MYSQLUP"] = "True"
         self.assertTrue(Features().haveMySqlTestServer())
         del os.environ["MYSQLUP"]
 
-    def testRbmqTestServer(self):
+    def testRbmqTestServer(self) -> None:
         # Might need to handle true case
         self.assertFalse(Features().haveRbmqTestServer())
 
-    def testCvsTestServer(self):
+    def testCvsTestServer(self) -> None:
         self.assertFalse(Features().haveCvsTestServer())
 
-    def testSvnTestServer(self):
+    def testSvnTestServer(self) -> None:
         self.assertFalse(Features().haveSvnTestServer())
 
-    def testSftpTestServer(self):
+    def testSftpTestServer(self) -> None:
         self.assertFalse(Features().haveSftpTestServer())
 
-    def testToolsRuntime(self):
+    def testToolsRuntime(self) -> None:
         self.assertFalse(Features().haveToolsRuntime())
 
-    def testHaveCCD(self):
+    def testHaveCCD(self) -> None:
         self.assertFalse(Features().haveCCD())
 
 

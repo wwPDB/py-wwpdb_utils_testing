@@ -20,11 +20,13 @@ import logging
 import shutil
 import os
 
+from typing import List, Any, Optional, Union
+
 logger = logging.getLogger(__name__)
 
 
 class CreateRWTree(object):
-    def __init__(self, source=None, destination=None):
+    def __init__(self, source: Optional[str] = None, destination: Optional[str] = None) -> None:
         self.__srcDir = source
         self.__dstDir = destination
         self.__reqOpts = {
@@ -37,7 +39,10 @@ class CreateRWTree(object):
             "webapps": "_copywebapps",
         }
 
-    def createtree(self, objlist=None):
+    def createtree(self, objlist: Optional[List[Any]] = None) -> None:
+        if objlist is None:
+            logger.error("createtree with no objlist - Fatal")
+            return
         for obj in objlist:
             if type(obj) is str:
                 req = obj
@@ -51,6 +56,9 @@ class CreateRWTree(object):
 
             if req in self.__reqOpts:
                 mth = getattr(self, self.__reqOpts[req], None)
+                if mth is None:
+                    logger.error("Could not locate %s - fatal", self.__reqOpts[req])
+                    return
                 if opt_arg:
                     mth(opt_arg)
                 else:
@@ -58,17 +66,23 @@ class CreateRWTree(object):
             else:
                 logger.error("%s not known", req)
 
-    def _copysiteconfig(self):
+    def _copysiteconfig(self) -> None:
         """Copies the site config tree down so that MockTopDir will be the top of the r/w tree"""
         logger.info("Creating %s", self.__dstDir)
+        if self.__srcDir is None or self.__dstDir is None:
+            logger.error("srcDir of dstDir not set --- FATAL")
+            return
         src = os.path.join(self.__srcDir, "site-config")
         dst = os.path.join(self.__dstDir, "site-config")
         if os.path.exists(dst):
             shutil.rmtree(dst)
         shutil.copytree(src, dst)
 
-    def _copyactiondata(self):
+    def _copyactiondata(self) -> None:
         """Copies the actondata definitions"""
+        if self.__srcDir is None or self.__dstDir is None:
+            logger.error("srcDir of dstDir not set --- FATAL")
+            return
         src = os.path.join(self.__srcDir, "da_top", "resources_ro", "actionData.xml")
         dst = os.path.join(self.__dstDir, "da_top", "resources_ro", "actionData.xml")
         logger.info("Copying %s to %s", src, dst)
@@ -79,39 +93,51 @@ class CreateRWTree(object):
             os.makedirs(dst_base)
         shutil.copyfile(src, dst)
 
-    def _copydepuiresources(self):
+    def _copydepuiresources(self) -> None:
         """Copies the depui resources tree so that MockTopDir will be the top of the r/w tree"""
         logger.info("Creating %s", self.__dstDir)
+        if self.__srcDir is None or self.__dstDir is None:
+            logger.error("srcDir of dstDir not set --- FATAL")
+            return
         src = os.path.join(self.__srcDir, "da_top", "resources_ro", "depui")
         dst = os.path.join(self.__dstDir, "da_top", "resources_ro", "depui")
         if os.path.exists(dst):
             shutil.rmtree(dst)
         shutil.copytree(src, dst)
 
-    def _copyemdresources(self):
+    def _copyemdresources(self) -> None:
         """Copies the emd  resources tree so that MockTopDir will be the top of the r/w tree"""
         logger.info("Creating %s", self.__dstDir)
+        if self.__srcDir is None or self.__dstDir is None:
+            logger.error("srcDir of dstDir not set --- FATAL")
+            return
         src = os.path.join(self.__srcDir, "da_top", "resources_ro", "emd")
         dst = os.path.join(self.__dstDir, "da_top", "resources_ro", "emd")
         if os.path.exists(dst):
             shutil.rmtree(dst)
         shutil.copytree(src, dst)
 
-    def _copywsresources(self):
+    def _copywsresources(self) -> None:
         """Copies the content_ws resources tree so that MockTopDir will be the top of the r/w tree"""
         logger.info("Creating %s", self.__dstDir)
+        if self.__srcDir is None or self.__dstDir is None:
+            logger.error("srcDir of dstDir not set --- FATAL")
+            return
         src = os.path.join(self.__srcDir, "da_top", "resources_ro", "content_ws")
         dst = os.path.join(self.__dstDir, "da_top", "resources_ro", "content_ws")
         if os.path.exists(dst):
             shutil.rmtree(dst)
         shutil.copytree(src, dst)
 
-    def _copywebapps(self, modules=None):
+    def _copywebapps(self, modules: Optional[Union[str, List[Any]]] = None) -> None:
         """Copies selected webapps resources tree so that MockTopDir will be the top of the r/w tree"""
         if type(modules) is str:
             modules = [modules]
 
         # Copy version number
+        if self.__srcDir is None or self.__dstDir is None:
+            logger.error("srcDir of dstDir not set --- FATAL")
+            return
         websrcdir = os.path.join(self.__srcDir, "da_top", "webapps")
         webdstdir = os.path.join(self.__dstDir, "da_top", "webapps")
         src = os.path.join(websrcdir, "version.json")
@@ -136,8 +162,12 @@ class CreateRWTree(object):
                     shutil.rmtree(dst)
                 shutil.copytree(src, dst)
 
-    def _copyarchive(self, idlist):
+    def _copyarchive(self, idlist: Union[str, List[Any]]) -> None:
         """Copies the archive directory down so that MockTopDir will be the top of the r/w tree"""
+        if self.__srcDir is None or self.__dstDir is None:
+            logger.error("srcDir of dstDir not set --- FATAL")
+            return
+
         if type(idlist) is str:
             idlist = [idlist]
 
