@@ -41,7 +41,7 @@ version = {attr = "wwpdb.utils.testing.__version__"}
 include-package-data = false
 
 [tool.setuptools.package-data]
-mypkg = ["*.pyi", "*.rst", "py.typed"]
+wwpdb = ["*.pyi", "*.rst", "py.typed"]
 
 [tool.distutils.bdist_wheel]
 universal = true
