@@ -24,10 +24,10 @@ from subprocess import call
 
 # Empty class for import
 class SiteConfigSetup(object):
-    def __init__(self):
+    def __init__(self) -> None:
         pass
 
-    def setupEnvironment(self, TestOutputPath, MockDirPath):
+    def setupEnvironment(self, TestOutputPath: str, MockDirPath: str) -> None:
         if not os.path.exists(TestOutputPath):
             os.makedirs(TestOutputPath)
 

@@ -19,42 +19,42 @@ import os
 
 
 class Features(object):
-    def haveApi(self):
+    def haveApi(self) -> bool:
         """Returns True is api services available"""
         return True
 
-    def haveMySqlTestServer(self):
+    def haveMySqlTestServer(self) -> bool:
         """Returns True if MySql server available for testing"""
         if os.getenv("MYSQLUP"):
             return True
         return False
 
-    def haveRbmqTestServer(self):
+    def haveRbmqTestServer(self) -> bool:
         """Returns True if MySql server available for testing"""
         if os.getenv("RBMQUP"):  # pragma: no cover
             return True
         return False
 
-    def haveCvsTestServer(self):
+    def haveCvsTestServer(self) -> bool:
         """Returns True if CVS server available for testing"""
         return False
 
-    def haveSvnTestServer(self):
+    def haveSvnTestServer(self) -> bool:
         """Returns True if SVN server available for testing"""
         return False
 
-    def haveSftpTestServer(self):
+    def haveSftpTestServer(self) -> bool:
         """Returns True if SFTP server available for testing"""
         return False
 
-    def haveToolsRuntime(self):
+    def haveToolsRuntime(self) -> bool:
         """Returns True if runtime tools available in environment"""
         return False
 
-    def haveCCD(self):
+    def haveCCD(self) -> bool:
         """Returns True if CCD available for use in read only tests"""
         return False
 
-    def testNever(self):
+    def testNever(self) -> bool:
         """Always returns False to confirm ability to skip in testing"""
         return False
