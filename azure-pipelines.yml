@@ -30,7 +30,7 @@ jobs:
   - template: azure-template-tox-job.yml
     parameters: {tox: 'lint_pylint', python: '3.9', os: 'linux'}
   - template: azure-template-tox-job.yml
-    parameters: {tox: 'mypy', python: '3.8', os: 'linux'}
+    parameters: {tox: 'mypy', python: '3.9', os: 'linux'}
   - template: azure-template-tox-job.yml
     parameters: {tox: 'test_coverage', python: '3.9', os: 'linux'}
     #
